@@ -4,17 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Preçário 3 Marias</title>
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
   <style>
     :root {
-      --bg: #000000;        /* Fundo escuro */
-      --card: #1e1e1e;      /* Cartões de pratos */
-      --text: #d4b47c;      /* Texto dourado */
-      --accent: #8b5e3c;    /* Títulos das categorias */
-      --hover: #b38b5b;     /* Hover nos itens */
+      --bg: #000000;
+      --card: #1e1e1e;
+      --text: #d4b47c;
+      --accent: #8b5e3c;
+      --hover: #b38b5b;
       --border: #3e3e3e;
     }
 
-    * {box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
     body {
       background: var(--bg);
@@ -30,7 +39,9 @@
       letter-spacing: 2px;
     }
 
-    .category {margin-bottom: 35px;}
+    .category {
+      margin-bottom: 35px;
+    }
 
     .category h2 {
       background: var(--accent);
@@ -65,47 +76,81 @@
       transform: translateY(-3px);
     }
 
-    .item .name {font-weight: bold; font-size: 1rem;}
-    .item .price {font-weight: 600; font-size: 1rem; color: #fff;}
+    .item .name {
+      font-weight: bold;
+      font-size: 1rem;
+    }
 
-    footer {
+    .item .price {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    .info-section {
       text-align: center;
-      margin-top: 50px;
-      color: #999;
-      font-size: 0.9rem;
+      margin: 40px 0 20px 0;
+      color: #d4b47c;
+      font-size: 1rem;
       line-height: 1.5;
     }
 
-    /* Responsivo */
-    @media (max-width: 768px) {
-      body {padding: 15px;}
-      h1 {font-size: 1.9rem;}
-      .category h2 {font-size: 1.3rem;}
-      .item {padding: 12px 15px;}
+    .info-section p {
+      margin: 5px 0;
     }
 
-    @media (max-width: 480px) {
-      .item {flex-direction: column; align-items: flex-start; gap: 6px;}
-      .item .price {align-self: flex-end;}
+    .social {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      color: #d4b47c;
+      font-size: 1.3rem;
+    }
+
+    .social a {
+      color: #d4b47c;
+      text-decoration: none;
+      font-size: 1.3rem;
+    }
+
+    .social a:hover {
+      color: #b38b5b;
     }
 
     .responsive-img {
       max-width: 100%;
       height: auto;
       display: block;
-      margin: 0 auto;
+      margin: 0 auto 20px auto;
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+      body { padding: 15px; }
+      h1 { font-size: 1.9rem; }
+      .category h2 { font-size: 1.3rem; }
+      .item { padding: 12px 15px; }
+    }
+
+    @media (max-width: 480px) {
+      .item { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .item .price { align-self: flex-end; }
+      .social { flex-direction: column; gap: 5px; font-size: 1.2rem; }
     }
   </style>
 </head>
 <body>
-  
+
   <img src="Petiscaria.png" alt="Petiscaria_Logo" class="responsive-img">
   <h1>Preçário - Feira da Luz</h1>
 
+  <!-- Menu -->
   <section class="category">
     <h2>Menu</h2>
     <div class="menu">
-      <!-- Comida -->
       <div class="item"><div class="name">Pão</div><div class="price">1,50 €</div></div>
       <div class="item"><div class="name">Batatas Fritas</div><div class="price">2,00 €</div></div>
       <div class="item"><div class="name">Figo da Índia</div><div class="price">3,00 €</div></div>
@@ -132,6 +177,7 @@
     </div>
   </section>
 
+  <!-- Bebidas -->
   <section class="category">
     <h2>Bebidas</h2>
     <div class="menu">
@@ -157,14 +203,23 @@
     </div>
   </section>
 
-  <section class="category">
-    <h2>Multibanco disponível<br></h2>
-    <h2>É PROIBIDO O CONSUMO E A VENDA DE BEBIDAS ALCOÓLICAS A MENORES DE 18 ANOS<br></h2>
-    <h2>Mais Info: +351 965 183 172<br></h2>
-  </section>
+  <!-- Informações -->
+  <div class="info-section">
+    <p>Multibanco disponível</p>
+    <p>É PROIBIDO O CONSUMO E A VENDA DE BEBIDAS ALCOÓLICAS A MENORES DE 18 ANOS</p>
+    <p>Mais Info: +351 965 183 172</p>
+
+    <div class="social">
+      <span>Social Meida: </span>
+      <a href="https://www.instagram.com/petiscaria_3marias/" target="_blank"><i class="fab fa-instagram"></i> Petiscaria 3 Marias</a>
+      <a href="https://www.facebook.com/Petiscaria3Marias/" target="_blank"><i class="fab fa-facebook-f"></i> Petiscaria 3 Marias</a>
+      
+    </div>
+  </div>
 
   <footer>
     &copy; 2025 Petiscaria 3 Marias. Todos os direitos reservados.
   </footer>
+
 </body>
 </html>

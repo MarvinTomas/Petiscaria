@@ -132,9 +132,10 @@
 
     .gallery-card:hover { transform: translateY(-3px); }
 
-    .gallery-card img {
+   .gallery-card img {
   width: 100%;
-  height: 220px;   /* define uma altura padrão */
+  height: auto;       /* altura automática */
+  max-height: 220px;  /* limite opcional para não ficar gigante */
   object-fit: cover;
   display: block;
 }
@@ -155,7 +156,7 @@
       h1 { font-size: 1.9rem; }
       .category h2 { font-size: 1.3rem; }
       .item { padding: 12px 15px; }
-      .gallery-card img { height: 150px; }
+      .gallery-card img { max-height: 180px; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
@@ -163,7 +164,7 @@
       .item { flex-direction: column; align-items: flex-start; gap: 6px; }
       .item .price { align-self: flex-end; }
       .social { flex-direction: column; gap: 5px; font-size: 1.2rem; }
-      .gallery-card img { height: 140px; }
+      .gallery-card img { max-height: 150px; }
       .gallery-grid { grid-template-columns: 1fr; }
     }
   </style>

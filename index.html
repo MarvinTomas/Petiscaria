@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Preçário 3 Marias </title>
+  <title>Preçário 3 Marias</title>
 
   <!-- Font Awesome CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -35,7 +35,7 @@
       text-align: center;
       margin-bottom: 25px;
       font-size: 2.2rem;
-      color: white;
+      color: #fff;
       letter-spacing: 2px;
     }
 
@@ -110,7 +110,7 @@
       margin: 0 auto 20px auto;
     }
 
-    /* --- Galeria --- */
+    /* --- Galeria (corrigida) --- */
     .gallery-section {
       margin-top: 10px;
       margin-bottom: 40px;
@@ -118,40 +118,54 @@
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 12px;
     }
 
+    /* cartão limpo e responsivo */
     .gallery-card {
-     .gallery-card {
-  background: none;   /* opcional: sem fundo */
-  border: none;       /* se não quiseres moldura */
-  border-radius: 0;   /* remove cantos arredondados */
-  overflow: visible;  /* deixa o card crescer com a imagem */
-       transition: transform .25s ease, box-shadow .25s ease;
-}
-      
-    
+      background: none;
+      border: none;
+      border-radius: 0;
+      overflow: visible;
+      transition: transform .25s ease, box-shadow .25s ease;
+      display: grid;
+      gap: 8px;
+    }
+
+    /* caixa quadrada que se adapta ao ecrã */
+    .gallery-card .logo-box {
+      width: 100%;
+      aspect-ratio: 1 / 1;       /* mantém quadrado em qualquer largura */
+      display: grid;
+      place-items: center;        /* centra o logo */
+      background: var(--card);    /* troca para 'none' se quiseres sem fundo */
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    /* o logo nunca é cortado e escala para caber */
+    .gallery-card img {
+      max-width: 90%;
+      max-height: 90%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
 
     .gallery-card:hover { transform: translateY(-3px); }
 
-   .gallery-card img {
-  width: 100%;       /* ocupa toda a largura do card */
-  height: auto;      /* ajusta a altura automaticamente */
-  object-fit: contain; /* garante que a imagem não é cortada */
-  display: block;
-}
-
-
     .gallery-caption {
-      padding: 10px 12px;
+      padding: 0 2px;
       font-size: .95rem;
       color: #fff;
+      text-align: center;
     }
 
     /* Responsivo */
     @media (max-width: 1024px) {
-      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
     }
 
     @media (max-width: 768px) {
@@ -159,16 +173,14 @@
       h1 { font-size: 1.9rem; }
       .category h2 { font-size: 1.3rem; }
       .item { padding: 12px 15px; }
-      .gallery-card img { max-height: 180px; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
     }
 
     @media (max-width: 480px) {
       .item { flex-direction: column; align-items: flex-start; gap: 6px; }
       .item .price { align-self: flex-end; }
       .social { flex-direction: column; gap: 5px; font-size: 1.2rem; }
-      .gallery-card img { max-height: 150px; }
-      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; } /* 2 colunas no telemóvel */
     }
   </style>
 </head>
@@ -177,7 +189,7 @@
   <img src="Petiscaria.png" alt="Petiscaria_Logo" class="responsive-img">
   <h1>Preçário - Feira da Luz</h1>
 
-  <!-- Menu -->
+  <!-- Comida -->
   <section class="category">
     <h2>Comida</h2>
     <div class="menu">
@@ -206,6 +218,7 @@
     </div>
   </section>
 
+  <!-- Sobremesas -->
   <section class="category">
     <h2>Sobremesas</h2>
     <div class="menu">
@@ -242,6 +255,7 @@
     </div>
   </section>
 
+  <!-- Copos -->
   <section class="category">
     <h2>Copos</h2>
     <div class="menu">
@@ -254,37 +268,59 @@
   <section class="gallery-section category">
     <h2>Os nossos parceiros</h2>
     <div class="gallery-grid">
-      <!-- Troca os src pelos teus ficheiros -->
       <figure class="gallery-card">
-        <img src="ACLD.png" alt="ACLD" loading="lazy" width="600" height="400">
+        <div class="logo-box">
+          <img src="ACLD.png" alt="ACLD" loading="lazy" width="600" height="400">
+        </div>
         <figcaption class="gallery-caption">ACLD</figcaption>
       </figure>
+
       <figure class="gallery-card">
-        <img src="Agrofiap.jpg" alt="Agrofiap" loading="lazy" width="600" height="400">
+        <div class="logo-box">
+          <img src="Agrofiap.jpg" alt="Agrofiap" loading="lazy" width="600" height="400">
+        </div>
         <figcaption class="gallery-caption">Agrofiap</figcaption>
       </figure>
+
       <figure class="gallery-card">
-        <img src="Destilaria.png" alt="Destilaria Pérola do Alentejo" loading="lazy" width="600" height="400">
+        <div class="logo-box">
+          <img src="Destilaria.png" alt="Destilaria Pérola do Alentejo" loading="lazy" width="600" height="400">
+        </div>
         <figcaption class="gallery-caption">Destilaria Pérola do Alentejo</figcaption>
       </figure>
+
       <figure class="gallery-card">
-        <img src="Festival_de_Lavre.png" alt="Festival de Lavre" loading="lazy" width="600" height="400">
+        <div class="logo-box">
+          <img src="Festival_de_Lavre.png" alt="Festival de Lavre" loading="lazy" width="600" height="400">
+        </div>
         <figcaption class="gallery-caption">Festival de Lavre</figcaption>
       </figure>
+
       <figure class="gallery-card">
-        <img src="Sagres.png" alt="Sagres" loading="lazy" width="600" height="400">
+        <div class="logo-box">
+          <img src="Sagres.png" alt="Sagres" loading="lazy" width="600" height="400">
+        </div>
         <figcaption class="gallery-caption">Sagres</figcaption>
       </figure>
+
       <figure class="gallery-card">
-        <img src="Sem_Picos.png" alt="Sem Picos" loading="lazy" width="600" height="400">
+        <div class="logo-box">
+          <img src="Sem_Picos.png" alt="Sem Picos" loading="lazy" width="600" height="400">
+        </div>
         <figcaption class="gallery-caption">Sem Picos</figcaption>
       </figure>
-       <figure class="gallery-card">
-        <img src="logos_segredos.jpg" alt="Segredos do Montado" loading="lazy" width="600" height="400">
+
+      <figure class="gallery-card">
+        <div class="logo-box">
+          <img src="logos_segredos.jpg" alt="Segredos do Montado" loading="lazy" width="600" height="400">
+        </div>
         <figcaption class="gallery-caption">Segredos do Montado</figcaption>
       </figure>
+
       <figure class="gallery-card">
-        <img src="Camolas.png" alt="Adega Camolas" loading="lazy" width="600" height="400">
+        <div class="logo-box">
+          <img src="Camolas.png" alt="Adega Camolas" loading="lazy" width="600" height="400">
+        </div>
         <figcaption class="gallery-caption">Adega Camolas</figcaption>
       </figure>
     </div>
@@ -306,6 +342,5 @@
   <footer>
     &copy; 2025 Petiscaria 3 Marias. Todos os direitos reservados.
   </footer>
-
 </body>
 </html>

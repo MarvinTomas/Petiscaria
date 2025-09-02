@@ -76,16 +76,8 @@
       transform: translateY(-3px);
     }
 
-    .item .name {
-      font-weight: bold;
-      font-size: 1rem;
-    }
-
-    .item .price {
-      font-weight: 600;
-      font-size: 1rem;
-      color: #fff;
-    }
+    .item .name { font-weight: bold; font-size: 1rem; }
+    .item .price { font-weight: 600; font-size: 1rem; color: #fff; }
 
     .info-section {
       text-align: center;
@@ -95,9 +87,7 @@
       line-height: 1.5;
     }
 
-    .info-section p {
-      margin: 5px 0;
-    }
+    .info-section p { margin: 5px 0; }
 
     .social {
       margin-top: 10px;
@@ -110,15 +100,8 @@
       font-size: 1.3rem;
     }
 
-    .social a {
-      color: #d4b47c;
-      text-decoration: none;
-      font-size: 1.3rem;
-    }
-
-    .social a:hover {
-      color: #b38b5b;
-    }
+    .social a { color: #d4b47c; text-decoration: none; font-size: 1.3rem; }
+    .social a:hover { color: #b38b5b; }
 
     .responsive-img {
       max-width: 100%;
@@ -127,18 +110,61 @@
       margin: 0 auto 20px auto;
     }
 
+    /* --- Galeria --- */
+    .gallery-section {
+      margin-top: 10px;
+      margin-bottom: 40px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .gallery-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .gallery-card:hover { transform: translateY(-3px); }
+
+    .gallery-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-caption {
+      padding: 10px 12px;
+      font-size: .95rem;
+      color: #fff;
+    }
+
     /* Responsivo */
+    @media (max-width: 1024px) {
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
     @media (max-width: 768px) {
       body { padding: 15px; }
       h1 { font-size: 1.9rem; }
       .category h2 { font-size: 1.3rem; }
       .item { padding: 12px 15px; }
+      .gallery-card img { height: 150px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 480px) {
       .item { flex-direction: column; align-items: flex-start; gap: 6px; }
       .item .price { align-self: flex-end; }
       .social { flex-direction: column; gap: 5px; font-size: 1.2rem; }
+      .gallery-card img { height: 140px; }
+      .gallery-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -155,7 +181,6 @@
       <div class="item"><div class="name">Pão</div><div class="price">1,50 €</div></div>
       <div class="item"><div class="name">Azeitonas</div><div class="price">1,50 €</div></div>
       <div class="item"><div class="name">Batatas Fritas</div><div class="price">2,00 €</div></div>
-      
       <div class="item"><div class="name">Queijo de Ovelha</div><div class="price">3,50 €</div></div>
       <div class="item"><div class="name">Tomatada</div><div class="price">5,00 €</div></div>
       <div class="item"><div class="name">Linguiça Assada</div><div class="price">6,50 €</div></div>
@@ -176,7 +201,7 @@
       <div class="item"><div class="name">Costeletão</div><div class="price">18,50 €</div></div>
     </div>
   </section>
-  
+
   <section class="category">
     <h2>Sobremesas</h2>
     <div class="menu">
@@ -212,14 +237,55 @@
       <div class="item"><div class="name">Camolas Premium Branco / Tinto</div><div class="price">10,00 €</div></div>
     </div>
   </section>
-    <section class="category">
+
+  <section class="category">
     <h2>Copos</h2>
     <div class="menu">
       <div class="item"><div class="name">Eco-Copo</div><div class="price">1,00 €</div></div>
       <div class="item"><div class="name">Copo Petiscaria 3 Marias</div><div class="price">2,00 €</div></div>
-      
     </div>
   </section>
+
+  <!-- Galeria -->
+  <section class="gallery-section category">
+    <h2>Os nossos parceiros</h2>
+    <div class="gallery-grid">
+      <!-- Troca os src pelos teus ficheiros -->
+      <figure class="gallery-card">
+        <img src="ACLD.png" alt="ACLD" loading="lazy" width="600" height="400">
+        <figcaption class="gallery-caption">ACLD</figcaption>
+      </figure>
+      <figure class="gallery-card">
+        <img src="Agrofiap.jpg" alt="Agrofiap" loading="lazy" width="600" height="400">
+        <figcaption class="gallery-caption">Agrofiap</figcaption>
+      </figure>
+      <figure class="gallery-card">
+        <img src="Destilaria.png" alt="Destilaria Pérola do Alentejo" loading="lazy" width="600" height="400">
+        <figcaption class="gallery-caption">Destilaria Pérola do Alentejo</figcaption>
+      </figure>
+      <figure class="gallery-card">
+        <img src="Festival_de_Lavre.png" alt="Festival de Lavre" loading="lazy" width="600" height="400">
+        <figcaption class="gallery-caption">Festival de Lavre</figcaption>
+      </figure>
+      <figure class="gallery-card">
+        <img src="Sagres.png" alt="Sagres" loading="lazy" width="600" height="400">
+        <figcaption class="gallery-caption">Sagres</figcaption>
+      </figure>
+      <figure class="gallery-card">
+        <img src="Sem_Picos.png" alt="Sem Picos" loading="lazy" width="600" height="400">
+        <figcaption class="gallery-caption">Sem Picos</figcaption>
+      </figure>
+       <figure class="gallery-card">
+        <img src="logos_segredos.jpg" alt="Segredos do Montado" loading="lazy" width="600" height="400">
+        <figcaption class="gallery-caption">Segredos do Montado</figcaption>
+      </figure>
+      <figure class="gallery-card">
+        <img src="Camolas.png" alt="Adega Camolas" loading="lazy" width="600" height="400">
+        <figcaption class="gallery-caption">Adega Camolas</figcaption>
+      </figure>
+    </div>
+  </section>
+
   <!-- Informações -->
   <div class="info-section">
     <p>Multibanco disponível</p>
@@ -230,7 +296,6 @@
       <span>Social Media: </span>
       <a href="https://www.instagram.com/petiscaria_3marias/" target="_blank"><i class="fab fa-instagram"></i> Petiscaria 3 Marias</a>
       <a href="https://www.facebook.com/Petiscaria3Marias/" target="_blank"><i class="fab fa-facebook-f"></i> Petiscaria 3 Marias</a>
-      
     </div>
   </div>
 

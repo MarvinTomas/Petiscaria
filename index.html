@@ -123,22 +123,25 @@
     }
 
     .gallery-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
+     .gallery-card {
+  background: none;   /* opcional: sem fundo */
+  border: none;       /* se não quiseres moldura */
+  border-radius: 0;   /* remove cantos arredondados */
+  overflow: visible;  /* deixa o card crescer com a imagem */
+       transition: transform .25s ease, box-shadow .25s ease;
+}
+      
+    
 
     .gallery-card:hover { transform: translateY(-3px); }
 
    .gallery-card img {
-  width: 100%;
-  height: auto;       /* altura automática */
-  max-height: 220px;  /* limite opcional para não ficar gigante */
-  object-fit: cover;
+  width: 100%;       /* ocupa toda a largura do card */
+  height: auto;      /* ajusta a altura automaticamente */
+  object-fit: contain; /* garante que a imagem não é cortada */
   display: block;
 }
+
 
     .gallery-caption {
       padding: 10px 12px;

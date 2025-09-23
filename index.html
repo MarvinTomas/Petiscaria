@@ -1,347 +1,268 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Preçário 3 Marias</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Preçário 3 Marias — Feira da Luz</title>
 
-  <!-- Font Awesome CDN -->
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
-    :root {
-      --bg: #000000;
-      --card: #1e1e1e;
-      --text: #d4b47c;
-      --accent: #8b5e3c;
-      --hover: #b38b5b;
-      --border: #3e3e3e;
+    /* =====================
+       Paleta Alentejana
+       ===================== */
+    :root{
+      --terra: #b66534;       /* terracota */
+      --azeitona: #6b7f3a;    /* verde-oliva */
+      --cevada: #efe8d8;      /* bege claro */
+      --xisto: #3f2f28;       /* castanho escuro */
+      --areia: #f7f3ea;       /* fundo papel */
+      --vinho: #7c2330;       /* acento vinhos */
+      --sombra: rgba(0,0,0,.08);
+      --bordo: rgba(63,47,40,.18);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--xisto);
+      font-family:'Nunito', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background:
+        radial-gradient(1200px 800px at 10% -10%, rgba(182,101,52,.07), transparent 60%),
+        radial-gradient(900px 600px at 120% 10%, rgba(107,127,58,.06), transparent 60%),
+        repeating-linear-gradient(90deg, rgba(0,0,0,.015), rgba(0,0,0,.015) 1px, transparent 1px, transparent 6px),
+        var(--areia);
+      line-height:1.45;
     }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      padding: 20px;
+    .wrap{
+      max-width:1000px;
+      margin-inline:auto;
+      padding:clamp(16px, 3vw, 32px);
     }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 25px;
-      font-size: 2.2rem;
-      color: #fff;
-      letter-spacing: 2px;
+    header{
+      display:grid;
+      justify-items:center;
+      gap:10px;
+      margin-bottom:clamp(16px,3vw,28px);
+      text-align:center;
     }
 
-    .category {
-      margin-bottom: 35px;
+    .logo{max-width:min(360px, 80vw); height:auto}
+
+    h1{
+      font-family:'Marcellus', serif;
+      letter-spacing:.5px;
+      margin:0;
+      font-size:clamp(1.6rem, 3.6vw, 2.4rem);
+      color:var(--xisto);
     }
 
-    .category h2 {
-      background: var(--accent);
-      color: #fff;
-      padding: 12px 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      font-size: 1.5rem;
-      letter-spacing: 1px;
+    .tagline{color:#745a50;font-size:.98rem}
+
+    /* Cartões de categoria */
+    .category{
+      background:linear-gradient(180deg, #fff, var(--cevada));
+      border:1px solid var(--bordo);
+      border-radius:18px;
+      padding:18px;
+      box-shadow:0 6px 16px var(--sombra);
+      margin-bottom:20px;
+    }
+    .category h2{
+      font-family:'Marcellus', serif;
+      font-weight:400;
+      color:var(--terra);
+      margin:2px 0 10px 0;
+      display:flex; align-items:center; gap:10px;
+      font-size:clamp(1.2rem, 2.5vw, 1.6rem);
+    }
+    .category h2 .icon{color:var(--azeitona)}
+
+    /* Lista de itens */
+    .menu{display:grid; gap:10px}
+    .item{
+      display:grid; grid-template-columns: 1fr auto; gap:10px; align-items:center;
+      background:#fff;
+      border:1px solid var(--bordo);
+      border-radius:14px;
+      padding:12px 14px;
+      transition:.2s ease; 
+    }
+    .item:hover{ box-shadow:0 8px 18px var(--sombra); transform:translateY(-2px)}
+    .name{font-weight:700}
+    .price{font-weight:800}
+    .desc{grid-column:1 / -1; color:#6b5b53; font-size:.95rem}
+
+    /* Separador de Vinhos */
+    .divider{
+      display:flex; align-items:center; gap:12px; margin:12px 0 6px; color:var(--vinho);
+      font-family:'Marcellus', serif; font-size:1.1rem;
+    }
+    .divider::before, .divider::after{
+      content:''; flex:1; height:1px; background:linear-gradient(90deg, transparent, var(--vinho), transparent);
     }
 
-    .menu {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--card);
-      padding: 14px 18px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      transition: all 0.3s;
-      cursor: default;
-    }
-
-    .item:hover {
-      background: var(--hover);
-      transform: translateY(-3px);
-    }
-
-    .item .name { font-weight: bold; font-size: 1rem; }
-    .item .price { font-weight: 600; font-size: 1rem; color: #fff; }
-
-    .info-section {
-      text-align: center;
-      margin: 40px 0 20px 0;
-      color: #d4b47c;
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-
-    .info-section p { margin: 5px 0; }
-
-    .social {
-      margin-top: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      color: #d4b47c;
-      font-size: 1.3rem;
-    }
-
-    .social a { color: #d4b47c; text-decoration: none; font-size: 1.3rem; }
-    .social a:hover { color: #b38b5b; }
-
-    .responsive-img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto 20px auto;
-    }
-
-    /* --- Galeria (corrigida) --- */
-    .gallery-section {
-      margin-top: 10px;
-      margin-bottom: 40px;
-    }
-
-    .gallery-grid {
-      display: grid;
+    /* Galeria (para fotos futuras) */
+    .gallery-grid{
+      display:grid; gap:12px; 
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
     }
-
-    /* cartão limpo e responsivo */
-    .gallery-card {
-      background: none;
-      border: none;
-      border-radius: 0;
-      overflow: visible;
-      transition: transform .25s ease, box-shadow .25s ease;
-      display: grid;
-      gap: 8px;
+    .gallery-card{
+      aspect-ratio: 4/3; border:1px dashed var(--bordo); border-radius:14px;
+      display:grid; place-items:center; color:#7b6a61; background:#fff;
     }
+    .gallery-card i{font-size:1.6rem; opacity:.6}
 
-    /* caixa quadrada que se adapta ao ecrã */
-    .gallery-card .logo-box {
-      width: 100%;
-      aspect-ratio: 1 / 1;       /* mantém quadrado em qualquer largura */
-      display: grid;
-      place-items: center;        /* centra o logo */
-      background: var(--card);    /* troca para 'none' se quiseres sem fundo */
-      border: 1px solid var(--border);
-      border-radius: 12px;
-    }
+    /* Info + Social */
+    .info{ text-align:center; color:#6b5b53; margin:18px 0 8px }
+    .social{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:8px }
+    .social a{ color:var(--xisto); background:#fff; border:1px solid var(--bordo); padding:8px 12px; border-radius:999px; text-decoration:none }
+    .social a:hover{ background:var(--cevada) }
 
-    /* o logo nunca é cortado e escala para caber */
-    .gallery-card img {
-      max-width: 90%;
-      max-height: 90%;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      display: block;
-    }
-
-    .gallery-card:hover { transform: translateY(-3px); }
-
-    .gallery-caption {
-      padding: 0 2px;
-      font-size: .95rem;
-      color: #fff;
-      text-align: center;
-    }
-
-    /* Responsivo */
-    @media (max-width: 1024px) {
-      .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
-    }
-
-    @media (max-width: 768px) {
-      body { padding: 15px; }
-      h1 { font-size: 1.9rem; }
-      .category h2 { font-size: 1.3rem; }
-      .item { padding: 12px 15px; }
-      .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
-    }
-
-    @media (max-width: 480px) {
-      .item { flex-direction: column; align-items: flex-start; gap: 6px; }
-      .item .price { align-self: flex-end; }
-      .social { flex-direction: column; gap: 5px; font-size: 1.2rem; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; } /* 2 colunas no telemóvel */
+    /* Responsividade */
+    @media (max-width:640px){
+      .item{grid-template-columns: 1fr;}
+      .price{justify-self:end}
     }
   </style>
 </head>
 <body>
+  <div class="wrap">
+    <header>
+      <img src="Petiscaria.png" alt="Logótipo Petiscaria 3 Marias" class="logo" />
+      <h1>Preçário — Feira da Luz</h1>
+      <div class="tagline">Sabor do campo, mesa alentejana.</div>
+    </header>
 
-  <img src="Petiscaria.png" alt="Petiscaria_Logo" class="responsive-img">
-  <h1>Preçário - Feira da Luz</h1>
+    <!-- ENTRADAS (mantidas) -->
+    <section class="category" aria-labelledby="sec-entradas">
+      <h2 id="sec-entradas"><i class="fa-solid fa-bread-slice icon" aria-hidden="true"></i> Entradas</h2>
+      <div class="menu">
+        <div class="item"><div class="name">Tremoço</div><div class="price">1,00 €</div></div>
+        <div class="item"><div class="name">Pão</div><div class="price">1,50 €</div></div>
+        <div class="item"><div class="name">Azeitonas</div><div class="price">1,50 €</div></div>
+        <div class="item"><div class="name">Batatas Fritas</div><div class="price">2,00 €</div></div>
+        <div class="item"><div class="name">Queijo de Ovelha</div><div class="price">3,50 €</div></div>
+        <div class="item"><div class="name">Tomatada</div><div class="price">5,00 €</div></div>
+        <div class="item"><div class="name">Linguiça Assada</div><div class="price">6,50 €</div></div>
+        <div class="item"><div class="name">Farinheira Assada</div><div class="price">6,50 €</div></div>
+        <div class="item"><div class="name">Asas de Frango</div><div class="price">7,50 €</div></div>
+        <div class="item"><div class="name">Hambúrguer no Prato</div><div class="price">7,50 €</div></div>
+        <div class="item"><div class="name">Salada de Ovas</div><div class="price">10,00 €</div></div>
+        <div class="item"><div class="name">Salada de Polvo</div><div class="price">10,00 €</div></div>
+        <div class="item"><div class="name">Bolinhas Alheiras</div><div class="price">10,00 €</div></div>
+        <div class="item"><div class="name">Bolinhas de Choco c/ Tinta</div><div class="price">10,00 €</div></div>
+        <div class="item"><div class="name">Camarão em Tempura</div><div class="price">10,00 €</div></div>
+        <div class="item"><div class="name">Rolitos de Lagostim</div><div class="price">10,00 €</div></div>
+        <div class="item"><div class="name">Camarão Cozido</div><div class="price">12,50 €</div></div>
+        <div class="item"><div class="name">Rebuçados de Faisão</div><div class="price">12,50 €</div></div>
+        <div class="item"><div class="name">Tábua Mista</div><div class="price">12,50 €</div></div>
+      </div>
+    </section>
 
-  <!-- Comida -->
-  <section class="category">
-    <h2>Comida</h2>
-    <div class="menu">
-      <div class="item"><div class="name">Tremoço</div><div class="price">1,00 €</div></div>
-      <div class="item"><div class="name">Pão</div><div class="price">1,50 €</div></div>
-      <div class="item"><div class="name">Azeitonas</div><div class="price">1,50 €</div></div>
-      <div class="item"><div class="name">Batatas Fritas</div><div class="price">2,00 €</div></div>
-      <div class="item"><div class="name">Queijo de Ovelha</div><div class="price">3,50 €</div></div>
-      <div class="item"><div class="name">Tomatada</div><div class="price">5,00 €</div></div>
-      <div class="item"><div class="name">Linguiça Assada</div><div class="price">6,50 €</div></div>
-      <div class="item"><div class="name">Farinheira Assada</div><div class="price">6,50 €</div></div>
-      <div class="item"><div class="name">Asas de Frango</div><div class="price">7,50 €</div></div>
-      <div class="item"><div class="name">Hambúrguer no Prato</div><div class="price">7,50 €</div></div>
-      <div class="item"><div class="name">Salada de Ovas</div><div class="price">10,00 €</div></div>
-      <div class="item"><div class="name">Salada de Polvo</div><div class="price">10,00 €</div></div>
-      <div class="item"><div class="name">Bolinhas Alheiras</div><div class="price">10,00 €</div></div>
-      <div class="item"><div class="name">Bolinhas de Choco c/ Tinta</div><div class="price">10,00 €</div></div>
-      <div class="item"><div class="name">Camarão em Tempura</div><div class="price">10,00 €</div></div>
-      <div class="item"><div class="name">Rolitos de Lagostim</div><div class="price">10,00 €</div></div>
-      <div class="item"><div class="name">Camarão Cozido</div><div class="price">12,50 €</div></div>
-      <div class="item"><div class="name">Rebuçados de Faisão</div><div class="price">12,50 €</div></div>
-      <div class="item"><div class="name">Tábua Mista</div><div class="price">12,50 €</div></div>
-      <div class="item"><div class="name">Pernil</div><div class="price">12,50 €</div></div>
-      <div class="item"><div class="name">Lagartos</div><div class="price">16,00 €</div></div>
-      <div class="item"><div class="name">Costeletão</div><div class="price">18,50 €</div></div>
-    </div>
-  </section>
-
-  <!-- Sobremesas -->
-  <section class="category">
-    <h2>Sobremesas</h2>
-    <div class="menu">
-      <div class="item"><div class="name">Figo da Índia</div><div class="price">3,00 €</div></div>
-      <div class="item"><div class="name">Bolo de Amêndoa c/ Chocolate</div><div class="price">4,00 €</div></div>
-      <div class="item"><div class="name">Manjar do Abade</div><div class="price">4,00 €</div></div>
-      <div class="item"><div class="name">Sericaia</div><div class="price">5,00 €</div></div>
-    </div>
-  </section>
-
-  <!-- Bebidas -->
-  <section class="category">
-    <h2>Bebidas</h2>
-    <div class="menu">
-      <div class="item"><div class="name">Café</div><div class="price">1,00 €</div></div>
-      <div class="item"><div class="name">Água Lisa 0,33L</div><div class="price">1,00 €</div></div>
-      <div class="item"><div class="name">Cerveja</div><div class="price">1,20 €</div></div>
-      <div class="item"><div class="name">Vinho (Copo)</div><div class="price">1,20 €</div></div>
-      <div class="item"><div class="name">Água c/ Gás</div><div class="price">1,50 €</div></div>
-      <div class="item"><div class="name">Sumo (Lata)</div><div class="price">2,00 €</div></div>
-      <div class="item"><div class="name">Coca-Cola (Lata)</div><div class="price">2,00 €</div></div>
-      <div class="item"><div class="name">Ice Tea (Lata)</div><div class="price">2,00 €</div></div>
-      <div class="item"><div class="name">7up (Lata)</div><div class="price">2,00 €</div></div>
-      <div class="item"><div class="name">Sumo Natural Figo da Índia</div><div class="price">2,00 €</div></div>
-      <div class="item"><div class="name">Sangria (Copo)</div><div class="price">2,50 €</div></div>
-      <div class="item"><div class="name">Sidra (Copo)</div><div class="price">2,50 €</div></div>
-      <div class="item"><div class="name">Cerveja (Grande)</div><div class="price">2,50 €</div></div>
-      <div class="item"><div class="name">Moscatel</div><div class="price">2,50 €</div></div>
-      <div class="item"><div class="name">Aguardente Sem Picos</div><div class="price">4,00 €</div></div>
-      <div class="item"><div class="name">Aguardente Pérola a Porcos</div><div class="price">4,00 €</div></div>
-      <div class="item"><div class="name">Bica Gin</div><div class="price">8,00 €</div></div>
-      <div class="item"><div class="name">Sangria (Jarro)</div><div class="price">8,50 €</div></div>
-      <div class="item"><div class="name">Sidra (Jarro)</div><div class="price">10,00 €</div></div>
-      <div class="item"><div class="name">Camolas Premium Branco / Tinto</div><div class="price">10,00 €</div></div>
-    </div>
-  </section>
-
-  <!-- Copos -->
-  <section class="category">
-    <h2>Copos</h2>
-    <div class="menu">
-      <div class="item"><div class="name">Eco-Copo</div><div class="price">1,00 €</div></div>
-      <div class="item"><div class="name">Copo Petiscaria 3 Marias</div><div class="price">2,00 €</div></div>
-    </div>
-  </section>
-
-  <!-- Galeria -->
-  <section class="gallery-section category">
-    <h2>Os nossos parceiros</h2>
-    <div class="gallery-grid">
-      <figure class="gallery-card">
-        <div class="logo-box">
-          <img src="ACLD.png" alt="ACLD" loading="lazy" width="600" height="400">
+    <!-- PRATOS (apenas Pernil e Bacalhau) -->
+    <section class="category" aria-labelledby="sec-pratos">
+      <h2 id="sec-pratos"><i class="fa-solid fa-utensils icon" aria-hidden="true"></i> Pratos</h2>
+      <div class="menu">
+        <div class="item">
+          <div class="name">Pernil</div>
+          <div class="price">12,50 €</div>
+          <div class="desc">Carne suculenta, lentamente assada ao estilo da casa.</div>
         </div>
-        <figcaption class="gallery-caption">ACLD</figcaption>
-      </figure>
-
-      <figure class="gallery-card">
-        <div class="logo-box">
-          <img src="Agrofiap.jpg" alt="Agrofiap" loading="lazy" width="600" height="400">
+        <div class="item">
+          <div class="name">Bacalhau</div>
+          <div class="price">— €</div>
+          <div class="desc">Indique o preparo desejado (à Brás, grelhado, cebolada, etc.).</div>
         </div>
-        <figcaption class="gallery-caption">Agrofiap</figcaption>
-      </figure>
+      </div>
+    </section>
 
-      <figure class="gallery-card">
-        <div class="logo-box">
-          <img src="Destilaria.png" alt="Destilaria Pérola do Alentejo" loading="lazy" width="600" height="400">
-        </div>
-        <figcaption class="gallery-caption">Destilaria Pérola do Alentejo</figcaption>
-      </figure>
+    <!-- SOBREMESAS -->
+    <section class="category" aria-labelledby="sec-sobremesas">
+      <h2 id="sec-sobremesas"><i class="fa-solid fa-ice-cream icon" aria-hidden="true"></i> Sobremesas</h2>
+      <div class="menu">
+        <div class="item"><div class="name">Figo da Índia</div><div class="price">3,00 €</div></div>
+        <div class="item"><div class="name">Bolo de Amêndoa c/ Chocolate</div><div class="price">4,00 €</div></div>
+        <div class="item"><div class="name">Manjar do Abade</div><div class="price">4,00 €</div></div>
+        <div class="item"><div class="name">Sericaia</div><div class="price">5,00 €</div></div>
+      </div>
+    </section>
 
-      <figure class="gallery-card">
-        <div class="logo-box">
-          <img src="Festival_de_Lavre.png" alt="Festival de Lavre" loading="lazy" width="600" height="400">
-        </div>
-        <figcaption class="gallery-caption">Festival de Lavre</figcaption>
-      </figure>
+    <!-- BEBIDAS + separador de Vinhos -->
+    <section class="category" aria-labelledby="sec-bebidas">
+      <h2 id="sec-bebidas"><i class="fa-solid fa-mug-saucer icon" aria-hidden="true"></i> Bebidas</h2>
+      <div class="menu">
+        <div class="item"><div class="name">Café</div><div class="price">1,00 €</div></div>
+        <div class="item"><div class="name">Água Lisa 0,33L</div><div class="price">1,00 €</div></div>
+        <div class="item"><div class="name">Água c/ Gás</div><div class="price">1,50 €</div></div>
+        <div class="item"><div class="name">Cerveja</div><div class="price">1,20 €</div></div>
+        <div class="item"><div class="name">Cerveja (Grande)</div><div class="price">2,50 €</div></div>
+        <div class="item"><div class="name">Sumos / Refrigerantes (lata)</div><div class="price">2,00 €</div></div>
+        <div class="item"><div class="name">Sumo Natural Figo da Índia</div><div class="price">2,00 €</div></div>
+        <div class="item"><div class="name">Sangria (Copo)</div><div class="price">2,50 €</div></div>
+        <div class="item"><div class="name">Sangria (Jarro)</div><div class="price">8,50 €</div></div>
+        <div class="item"><div class="name">Sidra (Copo)</div><div class="price">2,50 €</div></div>
+        <div class="item"><div class="name">Sidra (Jarro)</div><div class="price">10,00 €</div></div>
+        <div class="item"><div class="name">Moscatel</div><div class="price">2,50 €</div></div>
+        <div class="item"><div class="name">Aguardente Sem Picos</div><div class="price">4,00 €</div></div>
+        <div class="item"><div class="name">Aguardente Pérola a Porcos</div><div class="price">4,00 €</div></div>
+        <div class="item"><div class="name">Bica Gin</div><div class="price">8,00 €</div></div>
 
-      <figure class="gallery-card">
-        <div class="logo-box">
-          <img src="Sagres.png" alt="Sagres" loading="lazy" width="600" height="400">
-        </div>
-        <figcaption class="gallery-caption">Sagres</figcaption>
-      </figure>
+        <div class="divider" role="separator" aria-label="Vinhos"><i class="fa-solid fa-wine-glass"></i> Vinhos</div>
+        <div class="item"><div class="name">Vinho da Casa (Copo)</div><div class="price">1,20 €</div></div>
+        <div class="item"><div class="name">Camolas Premium Branco / Tinto (Garrafa)</div><div class="price">10,00 €</div></div>
+        <!-- Adicione aqui mais referências de vinho se necessário -->
+      </div>
+    </section>
 
-      <figure class="gallery-card">
-        <div class="logo-box">
-          <img src="Sem_Picos.png" alt="Sem Picos" loading="lazy" width="600" height="400">
-        </div>
-        <figcaption class="gallery-caption">Sem Picos</figcaption>
-      </figure>
+    <!-- COPOS -->
+    <section class="category" aria-labelledby="sec-copos">
+      <h2 id="sec-copos"><i class="fa-regular fa-circle icon" aria-hidden="true"></i> Copos</h2>
+      <div class="menu">
+        <div class="item"><div class="name">Eco‑Copo</div><div class="price">1,00 €</div></div>
+        <div class="item"><div class="name">Copo Petiscaria 3 Marias</div><div class="price">2,00 €</div></div>
+      </div>
+    </section>
 
-      <figure class="gallery-card">
-        <div class="logo-box">
-          <img src="logos_segredos.jpg" alt="Segredos do Montado" loading="lazy" width="600" height="400">
-        </div>
-        <figcaption class="gallery-caption">Segredos do Montado</figcaption>
-      </figure>
+    <!-- PARCEIROS / GALERIA - espaço para fotos -->
+    <section class="category" aria-labelledby="sec-galeria">
+      <h2 id="sec-galeria"><i class="fa-regular fa-image icon" aria-hidden="true"></i> Os nossos parceiros</h2>
+      <div class="gallery-grid">
+        <!-- Exemplos de cartões vazios para inserir fotos mais tarde -->
+        <figure class="gallery-card" title="Clique para substituir pela sua imagem">
+          <i class="fa-regular fa-image" aria-hidden="true"></i>
+        </figure>
+        <figure class="gallery-card" title="Clique para substituir pela sua imagem">
+          <i class="fa-regular fa-image" aria-hidden="true"></i>
+        </figure>
+        <figure class="gallery-card" title="Clique para substituir pela sua imagem">
+          <i class="fa-regular fa-image" aria-hidden="true"></i>
+        </figure>
+        <figure class="gallery-card" title="Clique para substituir pela sua imagem">
+          <i class="fa-regular fa-image" aria-hidden="true"></i>
+        </figure>
+      </div>
+      <!-- Como usar: substitua cada <figure> pelo seu <img src="ficheiro.png" alt="Nome"/> -->
+    </section>
 
-      <figure class="gallery-card">
-        <div class="logo-box">
-          <img src="Camolas.png" alt="Adega Camolas" loading="lazy" width="600" height="400">
-        </div>
-        <figcaption class="gallery-caption">Adega Camolas</figcaption>
-      </figure>
-    </div>
-  </section>
+    <!-- INFO -->
+    <section class="info">
+      <p>Multibanco disponível</p>
+      <p><strong>É PROIBIDO O CONSUMO E A VENDA DE BEBIDAS ALCOÓLICAS A MENORES DE 18 ANOS</strong></p>
+      <p>Mais Info: <a href="tel:+351965183172">+351 965 183 172</a></p>
+      <div class="social">
+        <a href="https://www.instagram.com/petiscaria_3marias/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://www.facebook.com/Petiscaria3Marias/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+      </div>
+    </section>
 
-  <!-- Informações -->
-  <div class="info-section">
-    <p>Multibanco disponível</p>
-    <p>É PROIBIDO O CONSUMO E A VENDA DE BEBIDAS ALCOÓLICAS A MENORES DE 18 ANOS</p>
-    <p>Mais Info: +351 965 183 172</p>
-
-    <div class="social">
-      <span>Social Media: </span>
-      <a href="https://www.instagram.com/petiscaria_3marias/" target="_blank"><i class="fab fa-instagram"></i> Petiscaria 3 Marias</a>
-      <a href="https://www.facebook.com/Petiscaria3Marias/" target="_blank"><i class="fab fa-facebook-f"></i> Petiscaria 3 Marias</a>
-    </div>
+    <footer class="info" style="margin-bottom:16px">&copy; 2025 Petiscaria 3 Marias. Todos os direitos reservados.</footer>
   </div>
-
-  <footer>
-    &copy; 2025 Petiscaria 3 Marias. Todos os direitos reservados.
-  </footer>
 </body>
 </html>

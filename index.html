@@ -12,7 +12,6 @@
   <style>
     :root{
       --primary:#d70f39;
-      --bg:#f3ebca;
       --dark:#2f2f2f;
       --card:#ffffff;
       --shadow:rgba(0,0,0,.18);
@@ -24,9 +23,13 @@
     body{
       margin:0;
       font-family:'Nunito', sans-serif;
-      background:var(--bg);
       color:var(--dark);
       line-height:1.6;
+
+      /* FUNDO PELO SITE TODO */
+      background:
+        linear-gradient(rgba(243,235,202,.92), rgba(243,235,202,.92)),
+        url("fundo.png") center/cover fixed no-repeat;
     }
 
     /* ANIMAÇÕES */
@@ -44,8 +47,7 @@
     .hero{
       min-height:100vh;
       background:
-        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
-        url("fundo.png") center/cover no-repeat;
+        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55));
       display:flex;
       align-items:center;
       justify-content:center;
@@ -138,10 +140,10 @@
       box-shadow:0 14px 30px var(--shadow);
     }
 
-    /* PATROCINADOR COM FUNDO */
+    /* PATROCINADOR */
     .sponsor-bg{
       background:
-        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+        linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
         url("camolas_background.png") center/cover no-repeat;
       padding:clamp(80px,10vw,140px) 20px;
       text-align:center;
@@ -214,9 +216,8 @@
     <div class="music">
       <div class="fade">
         <p><strong>Ana Casa Branca</strong> & <strong>Gonçalo Bonzinho</strong></p>
-        
       </div>
-      <img src="musica.png" alt="Música ao vivo" class="fade">
+      <img src="musica.jpeg" alt="Música ao vivo" class="fade">
     </div>
   </section>
 
@@ -225,14 +226,13 @@
     <div class="title fade">
       <h3>Patrocinador</h3>
     </div>
-    <img src="logo.png" alt="Petiscaria 3 Marias" class="fade">
+    <img src="camolas_background.png" alt="Adega Camolas" class="fade">
   </section>
 
   <footer>
-    © 2025 Petiscaria 3 Marias · Evento Dia dos Namorados
+    © 2025 Petiscaria 3 Marias 
   </footer>
 
-  <!-- SCRIPT ANIMAÇÕES -->
   <script>
     const elements = document.querySelectorAll('.fade');
     const observer = new IntersectionObserver(entries => {

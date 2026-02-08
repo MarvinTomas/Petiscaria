@@ -1,268 +1,228 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Preçário 3 Marias — Feira da Luz</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dia dos Namorados — Petiscaria 3 Marias</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/signature-2" rel="stylesheet">
 
   <style>
-    /* =====================
-       Paleta Alentejana
-       ===================== */
     :root{
-      --terra: #b66534;       /* terracota */
-      --azeitona: #6b7f3a;    /* verde-oliva */
-      --cevada: #efe8d8;      /* bege claro */
-      --xisto: #3f2f28;       /* castanho escuro */
-      --areia: #f7f3ea;       /* fundo papel */
-      --vinho: #7c2330;       /* acento vinhos */
-      --sombra: rgba(0,0,0,.08);
-      --bordo: rgba(63,47,40,.18);
+      --primary:#d70f39;
+      --bg:#f3ebca;
+      --dark:#3f2f28;
+      --card:#ffffff;
+      --border:rgba(0,0,0,.12);
+      --shadow:rgba(0,0,0,.12);
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
-      color:var(--xisto);
-      font-family:'Nunito', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-family:'Nunito', sans-serif;
+      background:var(--bg);
+      color:var(--dark);
+    }
+
+    /* HERO */
+    .hero{
+      min-height:100vh;
       background:
-        radial-gradient(1200px 800px at 10% -10%, rgba(182,101,52,.07), transparent 60%),
-        radial-gradient(900px 600px at 120% 10%, rgba(107,127,58,.06), transparent 60%),
-        repeating-linear-gradient(90deg, rgba(0,0,0,.015), rgba(0,0,0,.015) 1px, transparent 1px, transparent 6px),
-        var(--areia);
-      line-height:1.45;
-    }
-
-    .wrap{
-      max-width:1000px;
-      margin-inline:auto;
-      padding:clamp(16px, 3vw, 32px);
-    }
-
-    header{
-      display:grid;
-      justify-items:center;
-      gap:10px;
-      margin-bottom:clamp(16px,3vw,28px);
+        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+        url("background.jpg") center/cover no-repeat;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       text-align:center;
+      padding:24px;
+      color:#fff;
     }
 
-    .logo{max-width:min(360px, 80vw); height:auto}
-
-    h1{
-      font-family:'Marcellus', serif;
-      letter-spacing:.5px;
-      margin:0;
-      font-size:clamp(1.6rem, 3.6vw, 2.4rem);
-      color:var(--xisto);
+    .hero-content{
+      max-width:900px;
     }
 
-    .tagline{color:#745a50;font-size:.98rem}
-
-    /* Cartões de categoria */
-    .category{
-      background:linear-gradient(180deg, #fff, var(--cevada));
-      border:1px solid var(--bordo);
-      border-radius:18px;
-      padding:18px;
-      box-shadow:0 6px 16px var(--sombra);
+    .logo{
+      max-width:180px;
       margin-bottom:20px;
     }
-    .category h2{
-      font-family:'Marcellus', serif;
-      font-weight:400;
-      color:var(--terra);
-      margin:2px 0 10px 0;
-      display:flex; align-items:center; gap:10px;
-      font-size:clamp(1.2rem, 2.5vw, 1.6rem);
-    }
-    .category h2 .icon{color:var(--azeitona)}
 
-    /* Lista de itens */
-    .menu{display:grid; gap:10px}
-    .item{
-      display:grid; grid-template-columns: 1fr auto; gap:10px; align-items:center;
-      background:#fff;
-      border:1px solid var(--bordo);
-      border-radius:14px;
-      padding:12px 14px;
-      transition:.2s ease; 
-    }
-    .item:hover{ box-shadow:0 8px 18px var(--sombra); transform:translateY(-2px)}
-    .name{font-weight:700}
-    .price{font-weight:800}
-    .desc{grid-column:1 / -1; color:#6b5b53; font-size:.95rem}
-
-    /* Separador de Vinhos */
-    .divider{
-      display:flex; align-items:center; gap:12px; margin:12px 0 6px; color:var(--vinho);
-      font-family:'Marcellus', serif; font-size:1.1rem;
-    }
-    .divider::before, .divider::after{
-      content:''; flex:1; height:1px; background:linear-gradient(90deg, transparent, var(--vinho), transparent);
+    .hero h1{
+      font-family:'Signature', cursive;
+      font-size:clamp(2.5rem,6vw,4rem);
+      color:var(--primary);
+      margin:0;
     }
 
-    /* Galeria (para fotos futuras) */
-    .gallery-grid{
-      display:grid; gap:12px; 
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    .hero p{
+      font-size:1.1rem;
+      margin:10px 0 0;
     }
-    .gallery-card{
-      aspect-ratio: 4/3; border:1px dashed var(--bordo); border-radius:14px;
-      display:grid; place-items:center; color:#7b6a61; background:#fff;
+
+    /* SEÇÕES */
+    .section{
+      max-width:1100px;
+      margin:auto;
+      padding:clamp(24px,5vw,60px) 20px;
     }
-    .gallery-card i{font-size:1.6rem; opacity:.6}
 
-    /* Info + Social */
-    .info{ text-align:center; color:#6b5b53; margin:18px 0 8px }
-    .social{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:8px }
-    .social a{ color:var(--xisto); background:#fff; border:1px solid var(--bordo); padding:8px 12px; border-radius:999px; text-decoration:none }
-    .social a:hover{ background:var(--cevada) }
+    .section-title{
+      text-align:center;
+      margin-bottom:40px;
+    }
 
-    /* Responsividade */
-    @media (max-width:640px){
-      .item{grid-template-columns: 1fr;}
-      .price{justify-self:end}
+    .section-title h2{
+      font-family:'Signature', cursive;
+      font-size:clamp(2rem,4vw,3rem);
+      color:var(--primary);
+      margin:0;
+    }
+
+    /* EMENTA */
+    .menu-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:24px;
+    }
+
+    .menu-card{
+      background:var(--card);
+      border-radius:20px;
+      padding:24px;
+      box-shadow:0 8px 20px var(--shadow);
+      border:1px solid var(--border);
+    }
+
+    .menu-card h3{
+      margin:0 0 10px;
+      color:var(--primary);
+      font-size:1.2rem;
+    }
+
+    .menu-card p{
+      margin:6px 0;
+      font-size:.95rem;
+    }
+
+    .wine{
+      margin-top:12px;
+      font-weight:600;
+      font-size:.9rem;
+    }
+
+    /* MÚSICA */
+    .music{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:24px;
+      align-items:center;
+    }
+
+    .music img{
+      width:100%;
+      border-radius:20px;
+      box-shadow:0 10px 24px var(--shadow);
+    }
+
+    /* PATROCINADORES */
+    .sponsors{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:24px;
+    }
+
+    .sponsors img{
+      max-height:80px;
+      filter:grayscale(100%);
+      opacity:.85;
+    }
+
+    footer{
+      text-align:center;
+      padding:20px;
+      font-size:.85rem;
+      background:#e9e1c0;
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <img src="Petiscaria.png" alt="Logótipo Petiscaria 3 Marias" class="logo" />
-      <h1>Preçário — Feira da Luz</h1>
-      <div class="tagline">Sabor do campo, mesa alentejana.</div>
-    </header>
 
-    <!-- ENTRADAS (mantidas) -->
-    <section class="category" aria-labelledby="sec-entradas">
-      <h2 id="sec-entradas"><i class="fa-solid fa-bread-slice icon" aria-hidden="true"></i> Entradas</h2>
-      <div class="menu">
-        <div class="item"><div class="name">Tremoço</div><div class="price">1,00 €</div></div>
-        <div class="item"><div class="name">Pão</div><div class="price">1,50 €</div></div>
-        <div class="item"><div class="name">Azeitonas</div><div class="price">1,50 €</div></div>
-        <div class="item"><div class="name">Batatas Fritas</div><div class="price">2,00 €</div></div>
-        <div class="item"><div class="name">Queijo de Ovelha</div><div class="price">3,50 €</div></div>
-        <div class="item"><div class="name">Tomatada</div><div class="price">5,00 €</div></div>
-        <div class="item"><div class="name">Linguiça Assada</div><div class="price">6,50 €</div></div>
-        <div class="item"><div class="name">Farinheira Assada</div><div class="price">6,50 €</div></div>
-        <div class="item"><div class="name">Asas de Frango</div><div class="price">7,50 €</div></div>
-        <div class="item"><div class="name">Hambúrguer no Prato</div><div class="price">7,50 €</div></div>
-        <div class="item"><div class="name">Salada de Ovas</div><div class="price">10,00 €</div></div>
-        <div class="item"><div class="name">Salada de Polvo</div><div class="price">10,00 €</div></div>
-        <div class="item"><div class="name">Bolinhas Alheiras</div><div class="price">10,00 €</div></div>
-        <div class="item"><div class="name">Bolinhas de Choco c/ Tinta</div><div class="price">10,00 €</div></div>
-        <div class="item"><div class="name">Camarão em Tempura</div><div class="price">10,00 €</div></div>
-        <div class="item"><div class="name">Rolitos de Lagostim</div><div class="price">10,00 €</div></div>
-        <div class="item"><div class="name">Camarão Cozido</div><div class="price">12,50 €</div></div>
-        <div class="item"><div class="name">Rebuçados de Faisão</div><div class="price">12,50 €</div></div>
-        <div class="item"><div class="name">Tábua Mista</div><div class="price">12,50 €</div></div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <img src="logo-3marias.png" alt="Petiscaria 3 Marias" class="logo">
+      <h1>Dia dos Namorados</h1>
+      <p>14 de Fevereiro · Uma noite para sentir, saborear e celebrar o amor</p>
+    </div>
+  </section>
+
+  <!-- EMENTA -->
+  <section class="section">
+    <div class="section-title">
+      <h2>Ementa Especial</h2>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-card">
+        <h3>Folhado de Queijo de Cabra</h3>
+        <p>Maçã e frutos vermelhos</p>
+        <div class="wine">🍷 Adega Camolas Baga Branco</div>
       </div>
-    </section>
 
-    <!-- PRATOS (apenas Pernil e Bacalhau) -->
-    <section class="category" aria-labelledby="sec-pratos">
-      <h2 id="sec-pratos"><i class="fa-solid fa-utensils icon" aria-hidden="true"></i> Pratos</h2>
-      <div class="menu">
-        <div class="item">
-          <div class="name">Pernil</div>
-          <div class="price">12,50 €</div>
-          <div class="desc">Carne suculenta, lentamente assada ao estilo da casa.</div>
-        </div>
-        <div class="item">
-          <div class="name">Bacalhau</div>
-          <div class="price">— €</div>
-          <div class="desc">Indique o preparo desejado (à Brás, grelhado, cebolada, etc.).</div>
-        </div>
+      <div class="menu-card">
+        <h3>Bacalhau Confitado</h3>
+        <p>Batata assada</p>
+        <div class="wine">🍷 Adega Camolas Castro de Chibanes Superior Branco</div>
       </div>
-    </section>
 
-    <!-- SOBREMESAS -->
-    <section class="category" aria-labelledby="sec-sobremesas">
-      <h2 id="sec-sobremesas"><i class="fa-solid fa-ice-cream icon" aria-hidden="true"></i> Sobremesas</h2>
-      <div class="menu">
-        <div class="item"><div class="name">Figo da Índia</div><div class="price">3,00 €</div></div>
-        <div class="item"><div class="name">Bolo de Amêndoa c/ Chocolate</div><div class="price">4,00 €</div></div>
-        <div class="item"><div class="name">Manjar do Abade</div><div class="price">4,00 €</div></div>
-        <div class="item"><div class="name">Sericaia</div><div class="price">5,00 €</div></div>
+      <div class="menu-card">
+        <h3>Osso Buco</h3>
+        <p>Bimi salteado</p>
+        <div class="wine">🍷 Adega Camolas Alicante Bouchet</div>
       </div>
-    </section>
 
-    <!-- BEBIDAS + separador de Vinhos -->
-    <section class="category" aria-labelledby="sec-bebidas">
-      <h2 id="sec-bebidas"><i class="fa-solid fa-mug-saucer icon" aria-hidden="true"></i> Bebidas</h2>
-      <div class="menu">
-        <div class="item"><div class="name">Café</div><div class="price">1,00 €</div></div>
-        <div class="item"><div class="name">Água Lisa 0,33L</div><div class="price">1,00 €</div></div>
-        <div class="item"><div class="name">Água c/ Gás</div><div class="price">1,50 €</div></div>
-        <div class="item"><div class="name">Cerveja</div><div class="price">1,20 €</div></div>
-        <div class="item"><div class="name">Cerveja (Grande)</div><div class="price">2,50 €</div></div>
-        <div class="item"><div class="name">Sumos / Refrigerantes (lata)</div><div class="price">2,00 €</div></div>
-        <div class="item"><div class="name">Sumo Natural Figo da Índia</div><div class="price">2,00 €</div></div>
-        <div class="item"><div class="name">Sangria (Copo)</div><div class="price">2,50 €</div></div>
-        <div class="item"><div class="name">Sangria (Jarro)</div><div class="price">8,50 €</div></div>
-        <div class="item"><div class="name">Sidra (Copo)</div><div class="price">2,50 €</div></div>
-        <div class="item"><div class="name">Sidra (Jarro)</div><div class="price">10,00 €</div></div>
-        <div class="item"><div class="name">Moscatel</div><div class="price">2,50 €</div></div>
-        <div class="item"><div class="name">Aguardente Sem Picos</div><div class="price">4,00 €</div></div>
-        <div class="item"><div class="name">Aguardente Pérola a Porcos</div><div class="price">4,00 €</div></div>
-        <div class="item"><div class="name">Bica Gin</div><div class="price">8,00 €</div></div>
-
-        <div class="divider" role="separator" aria-label="Vinhos"><i class="fa-solid fa-wine-glass"></i> Vinhos</div>
-        <div class="item"><div class="name">Vinho da Casa (Copo)</div><div class="price">1,20 €</div></div>
-        <div class="item"><div class="name">Camolas Premium Branco / Tinto (Garrafa)</div><div class="price">10,00 €</div></div>
-        <!-- Adicione aqui mais referências de vinho se necessário -->
+      <div class="menu-card">
+        <h3>Bolo de Chocolate</h3>
+        <p>Gelado e morangos</p>
+        <div class="wine">🍷 Moscatel Roxo Adega Camolas</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- COPOS -->
-    <section class="category" aria-labelledby="sec-copos">
-      <h2 id="sec-copos"><i class="fa-regular fa-circle icon" aria-hidden="true"></i> Copos</h2>
-      <div class="menu">
-        <div class="item"><div class="name">Eco‑Copo</div><div class="price">1,00 €</div></div>
-        <div class="item"><div class="name">Copo Petiscaria 3 Marias</div><div class="price">2,00 €</div></div>
+  <!-- MÚSICA -->
+  <section class="section">
+    <div class="section-title">
+      <h2>Música ao Vivo</h2>
+    </div>
+
+    <div class="music">
+      <div>
+        <p><strong>Ana Casa Branca</strong> & <strong>Gonçalo Bonzinho</strong></p>
+        <p>Uma noite intimista, romântica e cheia de emoção.</p>
       </div>
-    </section>
+      <img src="musica.jpg" alt="Música ao vivo">
+    </div>
+  </section>
 
-    <!-- PARCEIROS / GALERIA - espaço para fotos -->
-    <section class="category" aria-labelledby="sec-galeria">
-      <h2 id="sec-galeria"><i class="fa-regular fa-image icon" aria-hidden="true"></i> Os nossos parceiros</h2>
-      <div class="gallery-grid">
-        <!-- Exemplos de cartões vazios para inserir fotos mais tarde -->
-        <figure class="gallery-card" title="Clique para substituir pela sua imagem">
-          <i class="fa-regular fa-image" aria-hidden="true"></i>
-        </figure>
-        <figure class="gallery-card" title="Clique para substituir pela sua imagem">
-          <i class="fa-regular fa-image" aria-hidden="true"></i>
-        </figure>
-        <figure class="gallery-card" title="Clique para substituir pela sua imagem">
-          <i class="fa-regular fa-image" aria-hidden="true"></i>
-        </figure>
-        <figure class="gallery-card" title="Clique para substituir pela sua imagem">
-          <i class="fa-regular fa-image" aria-hidden="true"></i>
-        </figure>
-      </div>
-      <!-- Como usar: substitua cada <figure> pelo seu <img src="ficheiro.png" alt="Nome"/> -->
-    </section>
+  <!-- PATROCINADORES -->
+  <section class="section">
+    <div class="section-title">
+      <h2>Patrocinadores</h2>
+    </div>
 
-    <!-- INFO -->
-    <section class="info">
-      <p>Multibanco disponível</p>
-      <p><strong>É PROIBIDO O CONSUMO E A VENDA DE BEBIDAS ALCOÓLICAS A MENORES DE 18 ANOS</strong></p>
-      <p>Mais Info: <a href="tel:+351965183172">+351 965 183 172</a></p>
-      <div class="social">
-        <a href="https://www.instagram.com/petiscaria_3marias/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
-        <a href="https://www.facebook.com/Petiscaria3Marias/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
-      </div>
-    </section>
+    <div class="sponsors">
+      <img src="logo-3marias.png" alt="Petiscaria 3 Marias">
+      <!-- adicionar mais logos se quiseres -->
+    </div>
+  </section>
 
-    <footer class="info" style="margin-bottom:16px">&copy; 2025 Petiscaria 3 Marias. Todos os direitos reservados.</footer>
-  </div>
+  <footer>
+    © 2025 Petiscaria 3 Marias · Dia dos Namorados
+  </footer>
+
 </body>
 </html>
